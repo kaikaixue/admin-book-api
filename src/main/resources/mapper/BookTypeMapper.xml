@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.xkk.adminbookapi.mapper.BookTypeMapper">
+    <insert id="addType" parameterType="object">
+        insert into t_booktype (type)
+        values (#{type});
+    </insert>
+    <update id="updateType" parameterType="object">
+        update t_booktype set type=#{type} where pk_Id=#{pkId}
+    </update>
+    <delete id="delType" parameterType="object">
+        delete from t_booktype where pk_id=#{id}
+    </delete>
+    <select id="findAllType" parameterType="object" resultType="top.xkk.adminbookapi.domain.DO.BookTypeDO">
+        select pk_id as id, type, create_time as createTime  from t_booktype where t_booktype.type like concat('%', #{key}, '%') limit #{index}, #{size};
+    </select>
+
+    <select id="count" resultType="Integer" parameterType="object">
+        select count(pk_id) from t_booktype;
+    </select>
+</mapper>

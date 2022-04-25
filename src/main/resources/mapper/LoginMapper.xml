@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.xkk.adminbookapi.mapper.LoginMapper">
+    <select resultType="top.xkk.adminbookapi.domain.DO.ManagerDO" parameterType="object" id="login">
+        select pk_id as userId, account, flag, name, is_delete as isDelete, create_time as createTime
+        from t_manager
+        where account = #{userName}
+          and password = #{password}
+    </select>
+
+    <select resultType="top.xkk.adminbookapi.domain.DO.ManagerInfoDO" parameterType="object" id="getInfo">
+        select name,avatar,introduction,flag as roles
+        from t_manager
+        where pk_id = #{userId}
+    </select>
+</mapper>

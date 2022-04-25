@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.xkk.adminbookapi.mapper.BookMapper">
+    <insert id="addBook" parameterType="object">
+        insert into t_book (`name`, cover, description, `type`, author, press, price, inventory, is_delete, create_time,
+                            update_time)
+        values (#{name}, #{cover}, #{description}, #{type}, #{author}, #{press}, #{price}, #{inventory}, #{isDelete},
+                #{createTime}, #{updateTime})
+    </insert>
+    <update id="updateBook" parameterType="object">
+        update t_book set name=#{name}, cover=#{cover}, description=#{description}, type=#{type}, author=#{author}, press=#{press}, price=#{price}, inventory=#{inventory} where pk_id = #{pkId}
+    </update>
+    <delete id="delBook" parameterType="object">
+        delete from t_book where pk_id=#{id}
+    </delete>
+
+    <select id="count" resultType="Integer" parameterType="object">
+        select count(pk_id) from t_book;
+    </select>
+
+    <select id="findAll" resultType="top.xkk.adminbookapi.domain.DO.BookDO" parameterType="object">
+        SELECT b.pk_id as bookId,
+               `name`,
+               cover,
+               description,
+               t.type,
+               author,
+               press,
+               price,
+               inventory,
+               b.is_delete   as isDelete,
+               b.create_time as createTime
+        from t_book as b,
+             t_booktype as t
+        WHERE b.type = t.pk_id
+          and name like concat('%', #{key}, '%') limit #{index}
+            , #{size};
+    </select>
+</mapper>
