@@ -37,7 +37,7 @@ public class BookTypeController {
     }
 
     @AuthToken
-    @PostMapping("delete")
+    @PostMapping("/delete")
     public RestResult delType(@RequestBody Integer id) {
         return  bookTypeService.delType(id);
     }

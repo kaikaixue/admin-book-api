@@ -55,4 +55,10 @@ public class BookController {
     public RestResult delBook(@RequestBody Integer id) {
         return bookService.delBook(id);
     }
+
+    @AuthToken
+    @PostMapping("/count")
+    public RestResult count() {
+        return bookService.count();
+    }
 }

@@ -65,4 +65,14 @@ public class BookServiceImpl implements BookService {
             return new RestResultBuilder<>().error("删除失败");
         }
     }
+
+    @Override
+    public RestResult count() {
+        Integer result =  bookMapper.count();
+        if (result >= 0) {
+            return new RestResultBuilder<>().success(result);
+        } else {
+            return new RestResultBuilder<>().error("统计失败");
+        }
+    }
 }

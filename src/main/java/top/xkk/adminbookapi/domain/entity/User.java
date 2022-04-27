@@ -15,6 +15,7 @@ public class User {
   private String account;
   private String password;
   private String cardId;
+  private String avatar;
   private String name;
   private long cardState;
   private String phone;
@@ -47,6 +48,14 @@ public class User {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public String getAvatar() {
+    return avatar;
+  }
+
+  public void setAvatar(String avatar) {
+    this.avatar = avatar;
   }
 
 

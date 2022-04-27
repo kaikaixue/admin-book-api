@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.xkk.adminbookapi.mapper.UserMapper">
+    <insert id="addUser" parameterType="object">
+        insert into t_user (account, password, avatar, card_id, name, card_state, phone) values (#{account}, #{password}, #{avatar}, #{cardId}, #{name}, #{cardState}, #{phone})
+    </insert>
+    <update id="updateUser" parameterType="object">
+        update t_user set account=#{account},avatar=#{avatar}, card_id=#{cardId}, name=#{name},card_state=#{cardState},phone=#{phone} where pk_id=#{pkId}
+    </update>
+    <delete id="delUser" parameterType="object">
+        update t_user set is_delete = 0 where pk_id=#{id}
+    </delete>
+
+    <select id="findAll" resultType="top.xkk.adminbookapi.domain.DO.UserDO">
+        select pk_id as userId, account, avatar, card_id as cardId, name, card_state as cardState, phone, create_time as createTime from t_user where name like concat('%', #{key}, '%') and is_delete = 1 limit #{index}, #{size};
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+        select  count(pk_id) from t_user
+    </select>
+</mapper>
