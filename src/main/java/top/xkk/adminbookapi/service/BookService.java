@@ -26,4 +26,6 @@ public interface BookService {
     RestResult updateBook(Book book);
 
     RestResult delBook(Integer id);
+
+    RestResult count();
 }
