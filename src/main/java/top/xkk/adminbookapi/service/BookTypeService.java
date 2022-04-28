@@ -13,4 +13,6 @@ public interface BookTypeService {
     RestResult updateType(Booktype booktype);
 
     RestResult delType(Integer id);
+
+    RestResult count();
 }

@@ -67,4 +67,14 @@ public class BookTypeServiceImpl implements BookTypeService {
             return new RestResultBuilder<>().error("删除失败");
         }
     }
+
+    @Override
+    public RestResult count() {
+        Integer count = bookTypeMapper.count();
+        if (count >= 0) {
+            return new RestResultBuilder<>().success(count);
+        } else {
+            return new RestResultBuilder<>().error("统计失败");
+        }
+    }
 }

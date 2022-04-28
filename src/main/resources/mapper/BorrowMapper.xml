@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.xkk.adminbookapi.mapper.BorrowMapper">
+    <select id="findAll" resultType="top.xkk.adminbookapi.domain.DO.BorrowDO" parameterType="object">
+        select b1.pk_id as id,b2.name as bookName, u.name as userName, b1.flag, b1.create_time as createTime, b1.end_time as endTime, b1.is_return as isReturn  from t_borrow as b1, t_book as b2, t_user as u where u.pk_id = b1.userId and b1.is_delete = 1 and b1.bookId = b2.pk_id and b2.name like concat('%', #{key}, '%') limit #{index}, #{size};
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(pk_id) from t_borrow where is_delete = 1
+    </select>
+</mapper>
