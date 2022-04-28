@@ -41,4 +41,10 @@ public class BookTypeController {
     public RestResult delType(@RequestBody Integer id) {
         return  bookTypeService.delType(id);
     }
+
+    @AuthToken
+    @PostMapping("/count")
+    public RestResult count() {
+        return bookTypeService.count();
+    }
 }
